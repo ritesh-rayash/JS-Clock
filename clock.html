@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            height: 100vh;
+            width: 100%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(to right,white,rgb(190,187,187));
+        }
+
+        .clock{
+            height: 50px;
+            width: 50vw;
+            height: 500px;
+            width: 500px;
+            border-radius: 50%;
+            background: rgb(230, 227, 227);
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 3px 1px 11px gray,8px 2px 25px dimgray;
+            border: 18px solid lightgray;
+            font-weight: 600;
+            font-family: sans-serif;
+        }
+
+        .items{
+            height: 10%;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .start{
+            height: 50px;
+            width: 50px;
+            font-size: 37px;
+            display: grid;
+            place-items: center;
+            color: rgb(87, 84, 84);
+        }
+
+        .end{
+            height: 50px;
+            width: 50px;
+            font-size: 37px;
+            display: grid;
+            place-items: center;
+            color: rgb(87, 84, 84);
+        }
+
+        .ts{
+            transform: rotate(-90deg);
+        }
+
+        .ts1{
+            transform: rotate(-90deg);
+            margin: -18px;
+            font-weight: 300;
+            font-size: 30px;
+        }
+
+        .os{
+            transform: rotate(60deg);
+        }
+
+        .os1{
+            transform: rotate(90deg);
+            margin: -18px;
+            font-weight: 300;
+            font-size: 30px;
+        }
+
+        .tw{
+            transform: rotate(30deg);
+        }
+
+        .tw1{
+            transform: rotate(90deg);
+            margin: -18px;
+            font-weight: 300;
+            font-size: 30px;
+        }
+
+        .tn{
+            transform: rotate(0deg);
+        }
+
+        .tn1{
+            transform: rotate(90deg);
+            margin: -18px;
+            font-weight: 300;
+            font-size: 30px;
+        }
+
+        .ft{
+            transform: rotate(-30deg);
+
+        }
+
+        .ft1{
+            transform: rotate(90deg);
+            margin: -18px;
+            font-weight: 300;
+            font-size: 30px;
+        }
+
+        .fe{
+            transform: rotate(-60deg);
+        }
+
+        .fe1{
+            transform: rotate(90deg);
+            margin: -18px;
+            font-weight: 300;
+            font-size: 30px;
+        }
+
+        .item1{
+            transform: translate(-50%,-50%) rotate(90deg);
+        }
+
+        .item2{
+            transform: translate(-50%,-50%) rotate(-60deg);
+            flex-direction: row-reverse;
+        }
+
+        .item3{
+            transform: translate(-50%,-50%) rotate(-30deg);
+            flex-direction: row-reverse;
+        }
+
+        .item4{
+            transform: translate(-50%,-50%);
+            flex-direction: row-reverse;
+        }
+
+        .item5{
+            transform: translate(-50%,-50%) rotate(30deg);
+            flex-direction: row-reverse;
+        }
+
+        .item6{
+            transform: translate(-50%,-50%) rotate(60deg);
+            flex-direction: row-reverse;
+        }
+
+        .symbol{
+            position: absolute;
+            top: 50%;
+            left: 50.5%;
+            height: 78%;
+            width: 78%;
+            background: white;
+            border-radius: 50%;
+            transform: translate(-50%,-50%);
+            box-shadow: inset 5px 2px 25px dimgray;
+        }
+
+        .symbol::before{
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 7%;
+            width: 7%;
+            background: rgb(51, 49, 49);
+            border-radius: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        #hour{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 55%;
+            width: 4.5%;
+            background: linear-gradient(to bottom,rgb(51,49,49) 0%,rgb(51,49,49) 50%, transparent 50%, transparent 100%);
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+        }
+
+        #minute{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 85%;
+            width: 2%;
+            background: linear-gradient(to bottom,rgb(51,49,49) 0%,rgb(51,49,49) 50%, transparent 50%, transparent 100%);
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+        }
+
+        #second{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 97%;
+            width: 1.2%;
+            background: linear-gradient(to bottom,rgb(22,151,22) 0%,rgb(22,151,22) 50%, transparent 50%, transparent 100%);
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            /* transition: all 1s linear; */
+        }
+
+        @media(max-width:700px){
+            .clock{
+                height: 450px;
+                width: 450px;
+            }
+
+            .start, .end{
+                font-size: 34px;
+            }
+
+            .symbol{
+                height: 76%;
+                width: 76%;
+            }
+        }
+
+        @media(max-width:520px){
+            .clock{
+                height: 400px;
+                width: 400px;
+            }
+
+            .start, .end{
+                font-size: 30px;
+            }
+
+            .symbol{
+                height: 76%;
+                width: 76%;
+            }
+        }
+
+        @media(max-width:430px){
+            .clock{
+                height: 350px;
+                width: 350px;
+            }
+
+            .start, .end{
+                font-size: 24px;
+                height: 45px;
+                width: 45px;
+            }
+
+            .symbol{
+                height: 74%;
+                width: 74%;
+            }
+        }
+
+        @media(max-width:380px){
+            .clock{
+                height: 200px;
+                width: 200px;
+            }
+
+            .start, .end{
+                font-size: 15px;
+                height: 30px;
+                width: 30px;
+            }
+
+            .symbol{
+                height: 70%;
+                width: 70%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="items item1"><span class="start ts">12</span><span class="end ts">6</span></div>
+        <div class="items item2"><span class="start os">1</span><span class="end os">7</span></div>
+        <div class="items item3"><span class="start tw">2</span><span class="end tw">8</span></div>
+        <div class="items item4"><span class="start tn">3</span><span class="end tn">9</span></div>
+        <div class="items item5"><span class="start ft">4</span><span class="end ft">10</span></div>
+        <div class="items item6"><span class="start fe">5</span><span class="end fe">11</span></div>
+        <div class="symbol"><span></span></div>
+        
+        <!-- <div class="items item1"><span class="start ts ts1">|</span><span class="end ts ts1">|</span></div>
+        <div class="items item2"><span class="start os os1">|</span><span class="end os os1">|</span></div>
+        <div class="items item3"><span class="start tw tw1">|</span><span class="end tw tw1">|</span></div>
+        <div class="items item4"><span class="start tn tn1">|</span><span class="end tn tn1">|</span></div>
+        <div class="items item5"><span class="start ft ft1">|</span><span class="end ft ft1">|</span></div>
+        <div class="items item6"><span class="start fe fe1">|</span><span class="end fe fe1">|</span></div> -->
+
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+    </div>
+
+    <script>
+        const hour=document.querySelector('#hour');
+        const minute=document.querySelector('#minute');
+        const second=document.querySelector('#second');
+        setInterval(()=>{
+            let date=new Date();
+            const h=date.getHours();
+            const m=date.getMinutes();
+            const s=date.getSeconds();
+
+            // 12 hour=360 deg                    |       60 min=360deg           |   60 sec=360deg
+            // => 1 hour=360/12 =30deg            |   => 1 min=360/60=6deg        |   1 sec=360/60=6deg
+            // h hour=30*h deg                    |      m min=6*mdeg             |   s sec=6*s deg 
+            // 1 min=30/60=1/2deg                 |      3600 sec=360 deg         |   srotation = 6*s
+            // m min=m/2 deg                      |      1 sec=360/3600=1/10deg   |
+            // 3600 sec=30deg                     |      s sec=s/10 deg           |
+            // 1 sec=s/120 deg                    |      mrotation=6*m + s/10     |
+            // hrotation=30*h + m/2 + s/120 deg   |                               |
+            // s sec= s/120deg                    |                               |
+            // hrotation= 30*h + m/2 +s/120 deg   |                               |
+
+            const hrotation=30*h + m/2 + s/120;
+            const mrotation=6*m + s/10;
+            const srotation=6*s;
+            hour.style.transform=`translate(-50%,-50%) rotate(${hrotation}deg)`;
+            minute.style.transform=`translate(-50%,-50%) rotate(${mrotation}deg)`;
+            second.style.transform=`translate(-50%,-50%) rotate(${srotation}deg)`;
+        })
+    </script>
+</body>
+</html>
